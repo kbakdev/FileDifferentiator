@@ -49,7 +49,7 @@ public class FileTest {
     @Test
     @DisplayName("File does not exist")
     void fileDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "txt"));
+        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "zip"));
     }
 
     @Test
@@ -68,5 +68,17 @@ public class FileTest {
     @DisplayName("File extension is correct")
     void extensionIsCorrect() {
         assert file.extension().equals("jpg");
+    }
+
+    @Test
+    @DisplayName("File is a record")
+    void isRecord() {
+        assert file != null;
+    }
+
+    @Test
+    @DisplayName("Check file zyzz.gif")
+    void checkFile() {
+        assert new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif").equals(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif"));
     }
 }

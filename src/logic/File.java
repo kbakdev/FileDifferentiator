@@ -25,7 +25,7 @@ public record File(String name, String path, String extension) {
         }
 
         // Check if the name is valid.
-        if (!name.matches("^[a-zA-Z0-9]+$")) {
+        if (!name.matches("^[\\w,\\s-]+\\w$")) {
             throw new IllegalArgumentException("File name is invalid");
         }
 
