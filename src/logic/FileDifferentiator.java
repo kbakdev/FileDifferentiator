@@ -27,7 +27,11 @@ public class FileDifferentiator {
         return null;
     }
 
-    public boolean checkMagicNumberExtension(String magicNumber, String extension) {
-        return magicNumber.equals(extension);
+    public boolean checkMagicNumberExtension(String magicNumber, String extension) throws Exception {
+        if (magicNumber.equals(extension)) {
+            return true;
+        } else {
+            throw new Exception("File extension " + extension + " does not match the file type " + magicNumber);
+        }
     }
 }

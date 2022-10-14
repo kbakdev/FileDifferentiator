@@ -16,78 +16,67 @@ public class FileDifferentiatorTest {
     @Test
     @DisplayName("File is a JPEG file")
     void fileIsJPEG() throws Exception {
-        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("JPG");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg")))).equals("jpg");
     }
 
     @Test
     @DisplayName("File is a PNG file")
     void fileIsPNG() throws Exception {
-        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("PNG");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png")))).equals("png");
     }
 
     @Test
     @DisplayName("File is a GIF file")
     void fileIsGIF() throws Exception {
-        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("GIF");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif")))).equals("gif");
     }
 
     @Test
     @DisplayName("File is a BMP file")
     void fileIsBMP() throws Exception {
-        File file = new File("53jk1", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("BMP");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("53jk1", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp")))).equals("bmp");
     }
 
     @Test
     @DisplayName("File is a TIFF file")
     void fileIsTIFF() throws Exception {
-        File file = new File("file_example_TIFF_1MB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "tiff");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("TIFF");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("file_example_TIFF_1MB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "tiff")))).equals("tiff");
     }
 
     @Test
     @DisplayName("File is a PDF file")
     void fileIsPDF() throws Exception {
-        File file = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "pdf");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("PDF");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "pdf")))).equals("pdf");
     }
 
     @Test
     @DisplayName("File is a RAR file")
     void fileIsRAR() throws Exception {
-        File file = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "rar");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("RAR");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "rar")))).equals("rar");
     }
 
     @Test
     @DisplayName("File is a MP3 file")
     void fileIsMP3() throws Exception {
-        File file = new File("file_example_MP3_700KB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "mp3");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("MP3");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("file_example_MP3_700KB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "mp3")))).equals("mp3");
     }
 
     @Test
     @DisplayName("File is a AVI file")
     void fileIsAVI() throws Exception {
-        File file = new File("file_example_AVI_480_750kB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "avi");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("AVI");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("file_example_AVI_480_750kB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "avi")))).equals("avi");
     }
 
     @Test
     @DisplayName("File is a MKV file")
     void fileIsMKV() throws Exception {
-        File file = new File("sample_640x360", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "mkv");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("MKV");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("sample_640x360", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "mkv")))).equals("mkv");
     }
 
     @Test
     @DisplayName("File is a WMV file")
     void fileIsWMV() throws Exception {
-        File file = new File("sample_640x360", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "wmv");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("WMV");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("sample_640x360", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "wmv")))).equals("wmv");
     }
 
     @Test
@@ -139,6 +128,15 @@ public class FileDifferentiatorTest {
     @DisplayName("Check Magic Number Extension Special Function - Corrupted Magic Bytes")
     void checkMagicNumberExtensionSpecialFunctionError() throws Exception {
         File file = new File("virus", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp");
+        InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
+        byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
+        assertThrows(Exception.class, () -> fd.checkMagicNumberExtension(fd.getFileType(fileSignature), file.extension()));
+    }
+
+    @Test
+    @DisplayName("CHeck Magic Number Extension of Fake GIF File")
+    void checkMagicNumberExtensionFakeGIF() throws Exception {
+        File file = new File("fakeGIF", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
         InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
         byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
         assertThrows(Exception.class, () -> fd.checkMagicNumberExtension(fd.getFileType(fileSignature), file.extension()));
