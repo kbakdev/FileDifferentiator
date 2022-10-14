@@ -4,12 +4,10 @@ import java.util.Arrays;
 
 public class BytesChecker {
     public static String checkBytes(byte[] fileData) throws Exception {
-        String type;
         MagicNumbers.MagicNumber[] magicNumbers = MagicNumbers.getMagicNumbers();
         for (MagicNumbers.MagicNumber magicNumber : magicNumbers) {
             if (Arrays.equals(magicNumber.magicBytes(), Arrays.copyOfRange(fileData, 0, magicNumber.magicBytes().length))) {
-                type = magicNumber.fileType();
-                return type;
+                return magicNumber.fileType();
             }
         }
         throw new Exception("Unknown file type");

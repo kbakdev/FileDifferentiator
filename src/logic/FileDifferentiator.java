@@ -5,9 +5,7 @@ import java.io.InputStream;
 
 public class FileDifferentiator {
     public String getFileType(byte[] fileData) throws Exception {
-        String type;
-        type = BytesChecker.checkBytes(fileData);
-        return type;
+        return BytesChecker.checkBytes(fileData);
     }
 
     public byte[] fileSignature(InputStream is) throws IOException {
@@ -27,5 +25,10 @@ public class FileDifferentiator {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // Function which checks if magic numbers match extension
+    public boolean checkMagicNumberExtension(String magicNumber, String extension) {
+        return magicNumber.equals(extension);
     }
 }

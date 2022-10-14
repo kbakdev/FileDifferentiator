@@ -15,6 +15,6 @@ public class Main {
         FileDifferentiator fd = new FileDifferentiator();
         File file = new File(fileName, path, fileExtension);
         InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
-        System.out.println(fileName + "." + fileExtension + " is a " + fd.getFileType(fd.fileSignature(inputStreamFromFile)) + " file.");
+        System.out.println(fd.checkMagicNumberExtension(fd.getFileType(fd.fileSignature(inputStreamFromFile)), file.extension()));
     }
 }

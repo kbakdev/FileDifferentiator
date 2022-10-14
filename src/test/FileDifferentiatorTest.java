@@ -5,6 +5,8 @@ import logic.FileDifferentiator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.InputStream;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FileDifferentiatorTest {
@@ -104,5 +106,16 @@ public class FileDifferentiatorTest {
     @DisplayName("Corrupted file test.png_original")
     void fileIsCorrupted2() {
         assertThrows(IllegalArgumentException.class, () -> fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("test", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png_original")))));
+    }
+
+    @Test
+    @DisplayName("Check Magic Number Extension")
+    void checkMagicNumberExtension() throws Exception {
+        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
+        InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
+        byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
+        System.out.println(fd.getFileType(fileSignature));
+        System.out.println(file.extension());
+        assert fd.getFileType(fileSignature).equals(file.extension());
     }
 }
