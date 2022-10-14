@@ -17,11 +17,11 @@ public class FileDifferentiator {
             type = "jpeg";
             return type;
         }
-        if (Byte.toUnsignedInt(fileData[0]) == 0x89 && Byte.toUnsignedInt(fileData[1]) == 0x50 && Byte.toUnsignedInt(fileData[2]) == 0x4E && Byte.toUnsignedInt(fileData[3]) == 0x47 && Byte.toUnsignedInt(fileData[4]) == 0x0D && Byte.toUnsignedInt(fileData[5]) == 0x0A && Byte.toUnsignedInt(fileData[6]) == 0x1A && Byte.toUnsignedInt(fileData[7]) == 0x0A) {
+        if (Bytes.convert(Arrays.copyOfRange(fileData, 0, 4)) == 0x89504E47) {
             type = "png";
             return type;
         }
-        if (Byte.toUnsignedInt(fileData[0]) == 0x47 && Byte.toUnsignedInt(fileData[1]) == 0x49 && Byte.toUnsignedInt(fileData[2]) == 0x46 && Byte.toUnsignedInt(fileData[3]) == 0x38 && (Byte.toUnsignedInt(fileData[4]) == 0x37 || Byte.toUnsignedInt(fileData[4]) == 0x39) && Byte.toUnsignedInt(fileData[5]) == 0x61) {
+        if (Bytes.convert(Arrays.copyOfRange(fileData, 0, 4)) == 0x47494638) {
             type = "gif";
             return type;
         }
@@ -33,11 +33,11 @@ public class FileDifferentiator {
             type = "tiff";
             return type;
         }
-        if (Byte.toUnsignedInt(fileData[0]) == 0x4D && Byte.toUnsignedInt(fileData[1]) == 0x4D && Byte.toUnsignedInt(fileData[2]) == 0x00 && Byte.toUnsignedInt(fileData[3]) == 0x2A) {
+        if (Bytes.convert(Arrays.copyOfRange(fileData, 0, 4)) == 0x00000100) {
             type = "tiff";
             return type;
         }
-        if (Byte.toUnsignedInt(fileData[0]) == 0x52 && Byte.toUnsignedInt(fileData[1]) == 0x49 && Byte.toUnsignedInt(fileData[2]) == 0x46 && Byte.toUnsignedInt(fileData[3]) == 0x46 && Byte.toUnsignedInt(fileData[8]) == 0x57 && Byte.toUnsignedInt(fileData[9]) == 0x41 && Byte.toUnsignedInt(fileData[10]) == 0x56 && Byte.toUnsignedInt(fileData[11]) == 0x45) {
+        if (Bytes.convert(Arrays.copyOfRange(fileData, 0, 4)) == 0x52494646 && Bytes.convert(Arrays.copyOfRange(fileData, 8, 12)) == 0x57454250) {
             type = "wav";
             return type;
         }
@@ -45,7 +45,7 @@ public class FileDifferentiator {
             type = "avi";
             return type;
         }
-        if (Byte.toUnsignedInt(fileData[0]) == 0x52 && Byte.toUnsignedInt(fileData[1]) == 0x49 && Byte.toUnsignedInt(fileData[2]) == 0x46 && Byte.toUnsignedInt(fileData[3]) == 0x46 && Byte.toUnsignedInt(fileData[8]) == 0x41 && Byte.toUnsignedInt(fileData[9]) == 0x4D && Byte.toUnsignedInt(fileData[10]) == 0x52 && Byte.toUnsignedInt(fileData[11]) == 0x20) {
+        if (Bytes.convert(Arrays.copyOfRange(fileData, 0, 4)) == 0x52494646 && Bytes.convert(Arrays.copyOfRange(fileData, 8, 12)) == 0x4D4D002A) {
             type = "amr";
             return type;
         }
@@ -59,21 +59,21 @@ public class FileDifferentiator {
             // HEX: 6D 70 34 31
             // ASCII: mp41
             // offset: 8
-            if (Byte.toUnsignedInt(fileData[8]) == 0x6D && Byte.toUnsignedInt(fileData[9]) == 0x70 && Byte.toUnsignedInt(fileData[10]) == 0x34 && Byte.toUnsignedInt(fileData[11]) == 0x31) {
+            if (Bytes.convert(Arrays.copyOfRange(fileData, 8, 12)) == 0x6D703431) {
                 type = "mp4";
                 return type;
             }
             // HEX: 69 73 6F 32
             // ASCII: iso2
             // offset: 8
-            if (Byte.toUnsignedInt(fileData[8]) == 0x69 && Byte.toUnsignedInt(fileData[9]) == 0x73 && Byte.toUnsignedInt(fileData[10]) == 0x6F && Byte.toUnsignedInt(fileData[11]) == 0x32) {
+            if (Bytes.convert(Arrays.copyOfRange(fileData, 8, 12)) == 0x69736F32) {
                 type = "mp4";
                 return type;
             }
             // HEX: 69 73 6F 6D
             // ASCII: isom
             // offset: 8
-            if (Byte.toUnsignedInt(fileData[8]) == 0x69 && Byte.toUnsignedInt(fileData[9]) == 0x73 && Byte.toUnsignedInt(fileData[10]) == 0x6F && Byte.toUnsignedInt(fileData[11]) == 0x6D) {
+            if (Bytes.convert(Arrays.copyOfRange(fileData, 8, 12)) == 0x69736F6D) {
                 type = "mp4";
                 return type;
             }
