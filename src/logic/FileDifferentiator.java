@@ -27,7 +27,6 @@ public class FileDifferentiator {
         return null;
     }
 
-    // Function which checks if magic numbers match extension
     public boolean checkMagicNumberExtension(String magicNumber, String extension) {
         return magicNumber.equals(extension);
     }
