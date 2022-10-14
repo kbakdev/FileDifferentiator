@@ -5,21 +5,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FileTest {
+
+    String s = Paths.get("").toAbsolutePath() + "/src/test/resources";
 
     File file;
 
     @BeforeEach
     void setUp() {
-        file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
+        file = new File("zyzz", s, "jpg");
     }
 
     @Test
     @DisplayName("File name cannot be null")
     void nameCannotBeNull() {
-        assertThrows(IllegalArgumentException.class, () -> new File(null, "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg"));
+        assertThrows(IllegalArgumentException.class, () -> new File(null, s, "jpg"));
     }
 
     @Test
@@ -31,25 +35,25 @@ public class FileTest {
     @Test
     @DisplayName("File extension cannot be null")
     void extensionCannotBeNull() {
-        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", null));
+        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", s, null));
     }
 
     @Test
     @DisplayName("File extension is invalid")
     void extensionIsInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg."));
+        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", s, "jpg."));
     }
 
     @Test
     @DisplayName("File name is invalid")
     void nameIsInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> new File("zyzz.", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg"));
+        assertThrows(IllegalArgumentException.class, () -> new File("zyzz.", s, "jpg"));
     }
 
     @Test
     @DisplayName("File does not exist")
     void fileDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "zip"));
+        assertThrows(IllegalArgumentException.class, () -> new File("zyzz", s, "zip"));
     }
 
     @Test
@@ -61,7 +65,7 @@ public class FileTest {
     @Test
     @DisplayName("File path is correct")
     void pathIsCorrect() {
-        assert file.path().equals("/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles");
+        assert file.path().equals(s);
     }
 
     @Test
@@ -79,6 +83,6 @@ public class FileTest {
     @Test
     @DisplayName("Check file zyzz.gif")
     void checkFile() {
-        assert new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif").equals(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif"));
+        assert new File("zyzz", s, "gif").equals(new File("zyzz", s, "gif"));
     }
 }

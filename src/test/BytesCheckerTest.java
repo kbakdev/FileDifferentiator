@@ -6,21 +6,24 @@ import logic.FileDifferentiator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Paths;
+
 public class BytesCheckerTest {
 
     FileDifferentiator fd = new FileDifferentiator();
+    String s = Paths.get("").toAbsolutePath() + "/src/test/resources";
 
     @Test
     @DisplayName("checkBytes")
     void checkBytes() throws Exception {
-        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
+        File file = new File("zyzz", s, "jpg");
         fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file)));
     }
 
     @Test
     @DisplayName("Get file type from file")
     void getFileTypeFromFile() throws Exception {
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg")))).equals("jpg");
+        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("zyzz", s, "jpg")))).equals("jpg");
     }
 
     @Test

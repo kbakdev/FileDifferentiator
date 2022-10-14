@@ -6,16 +6,20 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.nio.file.Paths;
 
 public class MagicNumbersTest {
-    File jpg = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
-    File png = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png");
-    File gif = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "gif");
-    File bmp = new File("53jk1", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp");
-    File tiff = new File("file_example_TIFF_1MB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "tiff");
-    File pdf = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "pdf");
-    File rar = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "rar");
-    File sevenz = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "7z");
+
+    String s = Paths.get("").toAbsolutePath() + "/src/test/resources";
+
+    File jpg = new File("zyzz", s, "jpg");
+    File png = new File("zyzz", s, "png");
+    File gif = new File("zyzz", s, "gif");
+    File bmp = new File("53jk1", s, "bmp");
+    File tiff = new File("file_example_TIFF_1MB", s, "tiff");
+    File pdf = new File("sample", s, "pdf");
+    File rar = new File("sample", s, "rar");
+    File sevenz = new File("sample", s, "7z");
 
     FileDifferentiator fd = new FileDifferentiator();
 
