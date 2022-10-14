@@ -59,13 +59,6 @@ public class FileDifferentiatorTest {
     }
 
     @Test
-    @DisplayName("File is a 7z file")
-    void fileIs7z() throws Exception {
-        File file = new File("sample", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "7z");
-        assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("7z");
-    }
-
-    @Test
     @DisplayName("File is a MP3 file")
     void fileIsMP3() throws Exception {
         File file = new File("file_example_MP3_700KB", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "mp3");
