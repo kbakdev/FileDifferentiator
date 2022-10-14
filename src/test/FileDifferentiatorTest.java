@@ -114,8 +114,33 @@ public class FileDifferentiatorTest {
         File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
         InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
         byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
-        System.out.println(fd.getFileType(fileSignature));
-        System.out.println(file.extension());
         assert fd.getFileType(fileSignature).equals(file.extension());
+    }
+
+    @Test
+    @DisplayName("Check Magic Number Extension - Corrupted Magic Bytes")
+    void checkMagicNumberExtensionFunctionError() throws Exception {
+        File file = new File("virus", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp");
+        InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
+        byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
+        assertThrows(Exception.class, () -> fd.getFileType(fileSignature));
+    }
+
+    @Test
+    @DisplayName("Check Magic Number Extension Special Function")
+    void checkMagicNumberExtensionSpecialFunction() throws Exception {
+        File file = new File("zyzz", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "jpg");
+        InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
+        byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
+        assert fd.checkMagicNumberExtension(fd.getFileType(fileSignature), file.extension());
+    }
+
+    @Test
+    @DisplayName("Check Magic Number Extension Special Function - Corrupted Magic Bytes")
+    void checkMagicNumberExtensionSpecialFunctionError() throws Exception {
+        File file = new File("virus", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "bmp");
+        InputStream inputStreamFromFile = fd.getInputStreamFromFile(file);
+        byte[] fileSignature = fd.fileSignature(inputStreamFromFile);
+        assertThrows(Exception.class, () -> fd.checkMagicNumberExtension(fd.getFileType(fileSignature), file.extension()));
     }
 }
