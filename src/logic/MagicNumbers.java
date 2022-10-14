@@ -9,25 +9,14 @@ public enum MagicNumbers {PNG(new byte[]{(byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x
     public static MagicNumbers.MagicNumber[] getMagicNumbers() {
         return MagicNumbers.MagicNumber.values();
     }
-    public static class MagicNumber {
-        private final byte[] magicBytes;
-        private final String fileType;
-        public MagicNumber(byte[] magicBytes, String fileType) {
-            this.magicBytes = magicBytes;
-            this.fileType = fileType;
-        }
+
+    public record MagicNumber(byte[] magicBytes, String fileType) {
         public static MagicNumber[] values() {
-            MagicNumber[] magicNumbers = new MagicNumber[MagicNumbers.values().length];
-            for (int i = 0; i < MagicNumbers.values().length; i++) {
-                magicNumbers[i] = new MagicNumber(MagicNumbers.values()[i].magicBytes, MagicNumbers.values()[i].fileType);
+                MagicNumber[] magicNumbers = new MagicNumber[MagicNumbers.values().length];
+                for (int i = 0; i < MagicNumbers.values().length; i++) {
+                    magicNumbers[i] = new MagicNumber(MagicNumbers.values()[i].magicBytes, MagicNumbers.values()[i].fileType);
+                }
+                return magicNumbers;
             }
-            return magicNumbers;
         }
-        public String fileType() {
-            return fileType;
-        }
-        public byte[] magicBytes() {
-            return magicBytes;
-        }
-    }
 }
