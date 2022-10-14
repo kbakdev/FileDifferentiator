@@ -5,9 +5,6 @@ public record File(String name, String path, String extension) {
         if (name == null) {
             throw new IllegalArgumentException("File name cannot be null");
         }
-        if (path == null) {
-            throw new IllegalArgumentException("File path cannot be null");
-        }
         if (extension == null) {
             throw new IllegalArgumentException("File extension cannot be null");
         }
