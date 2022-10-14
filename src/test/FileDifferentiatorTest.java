@@ -5,6 +5,8 @@ import logic.FileDifferentiator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class FileDifferentiatorTest {
 
     FileDifferentiator fd = new FileDifferentiator();
@@ -84,5 +86,23 @@ public class FileDifferentiatorTest {
     void fileIsWMV() throws Exception {
         File file = new File("sample_640x360", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "wmv");
         assert fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(file))).equals("WMV");
+    }
+
+    @Test
+    @DisplayName("Couldn't determine file type")
+    void fileIsUnknown() {
+        assertThrows(IllegalArgumentException.class, () -> fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("unknown", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "unknown")))));
+    }
+
+    @Test
+    @DisplayName("Corrupted file hack.png_original")
+    void fileIsCorrupted() {
+        assertThrows(IllegalArgumentException.class, () -> fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("hack", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png_original")))));
+    }
+
+    @Test
+    @DisplayName("Corrupted file test.png_original")
+    void fileIsCorrupted2() {
+        assertThrows(IllegalArgumentException.class, () -> fd.getFileType(fd.fileSignature(fd.getInputStreamFromFile(new File("test", "/home/kacper/IdeaProjects/FileDifferentiator/src/testFiles", "png_original")))));
     }
 }
