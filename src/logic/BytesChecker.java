@@ -1,5 +1,7 @@
 package logic;
+
 import java.util.Arrays;
+
 public class BytesChecker {
     public static String checkBytes(byte[] fileData) throws Exception {
         String type;
